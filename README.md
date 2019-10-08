@@ -31,7 +31,13 @@ npm install
 To run the Gauge test suite:
 
 ```shell
-$ npm test
+$ gauge run
+```
+
+To run an individual Gauge specification:
+
+```shell
+$ gauge run specs/01-introduction.spec
 ```
 
 To view the resulting report:
