@@ -25,3 +25,17 @@ npm install -g taiko
 cd conferenceworks-tests
 npm install
 ```
+
+## Running Gauge Test Suite
+
+To run the Gauge test suite:
+
+```shell
+$ gauge test
+```
+
+To view the resulting report:
+
+```shell
+$ open reports/html-report/index.html
+```
