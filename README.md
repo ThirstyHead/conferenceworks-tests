@@ -71,7 +71,7 @@ To execute this specification, use
 
 
 
-Look in `/code` for your Taiko/JavaScript-based step implementations. You can create a new file of step implementations by creating a new file with a `.js` file extension, or you can simply add additional steps to the existing `step_implementations.js` file.  
+Look in `/tests` for your Taiko/JavaScript-based step implementations. You can create a new file of step implementations by creating a new file with a `.js` file extension, or you can simply add additional steps to the existing `step_implementation.js` file.  
 
 ```shell
 $ ll tests/
@@ -86,7 +86,8 @@ drwxr-xr-x  14 scott  staff  448 Oct  8 11:46 ..
 ```javascript
 /* globals gauge*/
 "use strict";
-const { openBrowser,write, closeBrowser, goto, press, text, focus, textBox, toRightOf } = require('taiko');
+const { openBrowser,write, closeBrowser, goto, press, text, 
+        focus, textBox, toRightOf } = require('taiko');
 const assert = require("assert");
 const headless = process.env.headless_chrome.toLowerCase() === 'true';
 
