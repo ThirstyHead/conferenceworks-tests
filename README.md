@@ -31,7 +31,7 @@ npm install
 To run the Gauge test suite:
 
 ```shell
-$ gauge test
+$ npm test
 ```
 
 To view the resulting report:
@@ -57,7 +57,8 @@ drwxr-xr-x  14 scott  staff  448 Oct  8 11:46 ..
 ```markdown
 # Getting Started with Gauge
 
-This is an executable specification file. This file follows markdown syntax. Every heading in this file denotes a scenario. Every bulleted point denotes a step.
+This is an executable specification file. This file follows markdown syntax. 
+Every heading in this file denotes a scenario. Every bulleted point denotes a step.
 To execute this specification, use
 	npm test
 
