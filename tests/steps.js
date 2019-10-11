@@ -1,6 +1,6 @@
 /* globals gauge*/
 'use strict';
-const { openBrowser, closeBrowser, goto, text } = require('taiko');
+const { openBrowser, closeBrowser, goto, text, $ } = require('taiko');
 const assert = require('assert');
 const headless = process.env.headless_chrome.toLowerCase() === 'true';
 
@@ -18,4 +18,8 @@ step('Goto the ConferenceWorks homepage', async () => {
 
 step("Search for <teststring>", async (teststring) => {
     assert.ok(await text(teststring).exists());
+});
+
+step("Search for element <e>", async function(e) {
+	assert.ok(await $(e).exists());
 });
