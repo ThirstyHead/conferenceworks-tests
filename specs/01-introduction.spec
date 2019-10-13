@@ -1,6 +1,6 @@
 # 01-Introduction 
 
-This specification is for the 01-Introduction exercise at https://thethousandyearweb.com/examples/conferenceworks/introduction/exercise/.
+This specification is for the 01-Introduction exercise at https://thethousandyearweb.com/examples/conferenceworks/introduction/exercise.
 
 To run this specification:
 
