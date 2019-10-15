@@ -5,7 +5,7 @@ This specification is for the 02-Sections exercise at https://thethousandyearweb
 To run this specification:
 
 ```shell
-$ gauge run specs/02-sections
+$ gauge run specs/02-sections.spec
 ```
 
 To view the report:

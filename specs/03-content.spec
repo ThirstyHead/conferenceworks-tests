@@ -5,7 +5,7 @@ This specification is for the 03-Content exercise at https://thethousandyearweb.
 To run this specification:
 
 ```shell
-$ gauge run specs/03-content
+$ gauge run specs/03-content.spec
 ```
 
 To view the report:
@@ -29,3 +29,19 @@ $ open reports/html-report/index.html
 |--------|--------|
 |speakers|Speakers|
 |schedule|Schedule|
+
+## Visit each speaker's details page
+* Goto ConferenceWorks
+* Visit and search
+
+|page             |search     |
+|-----------------|-----------|
+|speakers/venkat  |Subramaniam|
+|speakers/rebecca |Parsons    |
+|speakers/neal    |Ford       |
+|speakers/mark    |Richards   |
+|speakers/brian   |Sletten    |
+|speakers/scott   |Davis      |
+
+
+

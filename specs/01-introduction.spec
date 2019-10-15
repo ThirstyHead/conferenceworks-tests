@@ -5,7 +5,7 @@ This specification is for the 01-Introduction exercise at https://thethousandyea
 To run this specification:
 
 ```shell
-$ gauge run specs/01-introduction
+$ gauge run specs/01-introduction.spec
 ```
 
 To view the report:
