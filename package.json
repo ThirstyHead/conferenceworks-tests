@@ -1,6 +1,6 @@
 {
   "name": "gauge-taiko-template",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Starter template for writing JavaScript tests for Gauge",
   "scripts": {
     "test": "gauge run specs/"
