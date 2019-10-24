@@ -1,10 +1,10 @@
 /* globals gauge*/
 'use strict';
-const { openBrowser, closeBrowser, goto, text, $, intercept } = require('taiko');
+const { openBrowser, closeBrowser, goto, text, $, intercept, click, textBox, toRightOf, write, evaluate } = require('taiko');
 const assert = require('assert');
 const headless = process.env.headless_chrome.toLowerCase() === 'true';
 
-let conferenceWorksUrl = "https://thirstyhead.com/conferenceworks/";
+let conferenceWorksUrl = "http://localhost:8888/conferenceworks/";
 
 beforeSuite(async () => {
     await openBrowser({ headless: headless })
@@ -26,8 +26,8 @@ step("Search for <teststring>", async (teststring) => {
     assert.ok(await text(teststring).exists());
 });
 
-step("Search for element <e>", async (e) => {
-    assert.ok(await $(e).exists());
+step("Search for element <element>", async (element) => {
+    assert.ok(await $(element).exists());
 });
 
 step("Visit and search <table>", async (table) => {
@@ -52,4 +52,24 @@ step("Mock Schedule microservice", async function() {
         ]};
 
     await intercept("/conferenceworks/schedule/schedule.json", { "body": JSON.stringify(mockJson)});
+});
+
+step("Click <element>", async function(element) {
+	await click(element);
+});
+
+step("Verify <message> is next to <field>", async function(message, field) {
+	assert.ok(await text(message, toRightOf(textBox(field))).exists());
+});
+
+step("Write <value>", async function(value) {
+	await write(value);
+});
+
+step("Verify field <fieldname> is valid", async function(fieldname) {
+    assert.ok(await evaluate( textBox(fieldname), (el) => el.matches(':valid') ));
+});
+
+step("Verify field <fieldname> is invalid", async function(fieldname) {
+    assert.ok(await evaluate( textBox(fieldname), (el) => el.matches(':invalid') ));
 });
