@@ -1,8 +1,11 @@
 /* globals gauge*/
 'use strict';
-const { openBrowser, closeBrowser, goto, text, $ } = require('taiko');
+const { openBrowser, closeBrowser, goto, text, $, intercept, click, textBox, toRightOf, write, evaluate } = require('taiko');
 const assert = require('assert');
 const headless = process.env.headless_chrome.toLowerCase() === 'true';
+
+let conferenceWorksUrl = "https://thirstyhead.com/conferenceworks/";
+// let conferenceWorksUrl = "http://localhost:8888/conferenceworks/";
 
 beforeSuite(async () => {
     await openBrowser({ headless: headless })
@@ -13,26 +16,61 @@ afterSuite(async () => {
 });
 
 step(['Goto the ConferenceWorks homepage', 'Goto ConferenceWorks'], async () => {
-    await goto('http://localhost:8888');
+    await goto(conferenceWorksUrl);
 });
 
 step('Goto <page>', async (page) => {
-    await goto(`http://localhost:8888/${page}`);
+    await goto(`${conferenceWorksUrl}${page}`);
 });
 
 step("Search for <teststring>", async (teststring) => {
     assert.ok(await text(teststring).exists());
 });
 
-step("Search for element <e>", async (e) => {
-    assert.ok(await $(e).exists());
+step("Search for element <element>", async (element) => {
+    assert.ok(await $(element).exists());
 });
 
 step("Visit and search <table>", async (table) => {
-    table.rows.forEach(async (row) => {
+    // NOTE: Do not use forEach with async calls
+    // table.rows.forEach(async (row) => {
+    for(let row of table.rows){
       let page = row.cells[0];
       let search = row.cells[1];
-      await goto(`http://localhost:8888/${page}`);
-      assert.ok(await text(teststring).exists());
-    });
+      gauge.message(`About to visit ${page}`);
+      await goto(`${conferenceWorksUrl}${page}`);
+      assert.ok(await text(search).exists());
+    }
+});
+
+step("Mock Schedule microservice", async function() {
+    let mockJson = {"sessions": [
+            {
+                "slot": "gh-1",
+                "talk": "Fun with Cheese",
+                "speaker": "Scott"
+            }
+        ]};
+
+    await intercept("/conferenceworks/schedule/schedule.json", { "body": JSON.stringify(mockJson)});
+});
+
+step("Click <element>", async function(element) {
+	await click(element);
+});
+
+step("Verify <message> is next to <field>", async function(message, field) {
+	assert.ok(await text(message, toRightOf(textBox(field))).exists());
+});
+
+step("Write <value>", async function(value) {
+	await write(value);
+});
+
+step("Verify field <fieldname> is valid", async function(fieldname) {
+    assert.ok(await evaluate( textBox(fieldname), (el) => el.matches(':valid') ));
+});
+
+step("Verify field <fieldname> is invalid", async function(fieldname) {
+    assert.ok(await evaluate( textBox(fieldname), (el) => el.matches(':invalid') ));
 });
