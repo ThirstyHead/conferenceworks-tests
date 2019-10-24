@@ -4,7 +4,8 @@ const { openBrowser, closeBrowser, goto, text, $, intercept, click, textBox, toR
 const assert = require('assert');
 const headless = process.env.headless_chrome.toLowerCase() === 'true';
 
-let conferenceWorksUrl = "http://localhost:8888/conferenceworks/";
+let conferenceWorksUrl = "https://thirstyhead.com/conferenceworks/";
+// let conferenceWorksUrl = "http://localhost:8888/conferenceworks/";
 
 beforeSuite(async () => {
     await openBrowser({ headless: headless })
